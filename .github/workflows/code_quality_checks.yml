@@ -1,0 +1,34 @@
+---
+name: Code Quality Checks
+
+on:
+  push:
+    branches: [master, development]
+  pull_request:
+    branches: [master, development]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install poetry
+        run: pip install poetry
+      - name: Install dependencies
+        run: poetry update
+      - name: Unit & Coverage test with pytest
+        run: poetry run pytest
+      
+      - name: Check style with pylint
+        run: poetry run pylint test_cookiecutter_pypackage_project/ tests/
+      - name: Check format with black
+        run: poetry run black --check test_cookiecutter_pypackage_project/ tests/
+      - name: Check type hinting with mypy
+        run: poetry run mypy --strict --config-file=mypy.ini test_cookiecutter_pypackage_project/
+      

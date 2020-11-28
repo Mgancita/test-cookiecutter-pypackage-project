@@ -1,6 +1,4 @@
-===================================
-test-cookiecutter-pypackage-project
-===================================
+# test-cookiecutter-pypackage-project
 
 
 [![PyPI version](https://badge.fury.io/py/test_cookiecutter_pypackage_project.svg)](https://badge.fury.io/py/test_cookiecutter_pypackage_project)
